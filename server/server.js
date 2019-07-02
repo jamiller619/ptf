@@ -1,14 +1,37 @@
 const express = require('express')
-const pg = require('pg')
+const { Pool } = require('pg')
 
-const server = express()
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
-const conn = 'postgres://postgres:password@localhost:5432/ptf'
-const client = new pg.Client(conn)
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+})
 
-server.get('/', (req, res) => res.status(200).send('hello world'))
+const app = express()
 
-server.listen(PORT, () =>
-  console.log(`Server running on port ${PORT}: http://localhost:3000`)
+app.get('/', (req, res) => res.status(200).send('hello world'))
+
+app.get('/ping', async (req, res) => {
+  try {
+    const client = await pool.connect()
+    const result = client.query('SELECT * from nodes')
+    const results = {
+      results: result && result.rows
+    }
+
+    res.send({
+      environment: process.env.NODE_ENV,
+      results
+    })
+
+    client.release()
+  } catch (err) {
+    console.error(err)
+    res.send(err.toString ? err.toString() : 'Unknown error')
+  }
+})
+
+app.listen(PORT, () =>
+  console.log(`app running on port ${PORT}: http://localhost:3000`)
 )
