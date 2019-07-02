@@ -1,6 +1,6 @@
 <img src="app/src/assets/logo.svg" width="16%" style="background-color:transparent" />
 
-# Passport Tree Factory Challenge
+# Passport Tree Factory
 
 ## Install
 
