@@ -1,0 +1,9 @@
+{
+  "name": "ptf",
+  "version": "0.0.1",
+  "description": "Passport Tree Factory",
+  "main": "index.js",
+  "repository": "https://github.com/jamiller619/ptf.git",
+  "author": "Jeff Miller <hello@jamiller.me>",
+  "license": "MIT"
+}

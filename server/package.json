@@ -1,0 +1,15 @@
+{
+  "name": "ptf.server",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Jeff Miller <hello@jamiller.me>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1",
+    "pg": "^7.11.0"
+  }
+}

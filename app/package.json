@@ -1,0 +1,7 @@
+{
+  "name": "ptf.app",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "author": "Jeff Miller <hello@jamiller.me>",
+  "license": "MIT"
+}
