@@ -1,19 +1,21 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const NodeModel = require('./FactoryNodeModel')
+
+const model = require('./model')
+
+const app = express()
+const jsonParser = bodyParser.json()
 
 const PORT = process.env.PORT || 3000
 
-const app = express()
-
-// app.use(bodyParser.urlencoded({ extended: false }))
-const jsonParser = bodyParser.json()
-
 app.get('/', (req, res) => res.status(200).send('Hello!'))
 
-app.get('/factoryNodes', async (req, res) => {
+/**
+ * Get all factory nodes
+ */
+app.get('/factory-nodes', async (req, res) => {
   try {
-    const result = await NodeModel.getAll()
+    const result = await model.getAll()
 
     res.status(200).json(result)
   } catch (e) {
@@ -21,26 +23,15 @@ app.get('/factoryNodes', async (req, res) => {
   }
 })
 
-app.put('/factoryNode', async (req, res) => {
-  try {
-    const factoryNode = req.body
-
-    // Add verification
-
-    res.status(200).json(factoryNode.id)
-  } catch (e) {
-    res.status(400).json(e)
-  }
-})
-
-app.post('/factoryNode', jsonParser, async (req, res) => {
+/**
+ * Create a factory nodes
+ */
+app.post('/factory-node', jsonParser, async (req, res) => {
   try {
     const node = req.body
 
-    console.log(req.body)
-
     // Add verification
-    const id = await NodeModel.create(node)
+    const id = await model.create(node)
 
     res.status(200).json({ id })
   } catch (e) {
@@ -48,21 +39,35 @@ app.post('/factoryNode', jsonParser, async (req, res) => {
   }
 })
 
-app.get('/ping', async (req, res) => {
+/**
+ * Update a factory node
+ */
+app.put('/factory-node', jsonParser, async (req, res) => {
   try {
-    const client = await model.connect()
-    const result = await client.query('SELECT 1 + 1')
-    const results = result.rows
+    const node = req.body
 
-    res.send({
-      environment: process.env.NODE_ENV,
-      results
-    })
+    // Add verification
+    const id = await model.update(node)
 
-    client.release()
+    res.status(200).json({ id })
   } catch (e) {
-    console.error(e)
-    res.send(e.toString ? e.toString() : 'Unknown error')
+    res.status(400).json(e)
+  }
+})
+
+/**
+ * Delete a factory node
+ */
+app.put('/factory-node', jsonParser, async (req, res) => {
+  try {
+    const { id } = req.body
+
+    // Add verification
+    const result = await model.remove(id)
+
+    res.status(200).json({ result })
+  } catch (e) {
+    res.status(400).json(e)
   }
 })
 

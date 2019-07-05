@@ -5,5 +5,15 @@
   "main": "index.js",
   "repository": "https://github.com/jamiller619/ptf.git",
   "author": "Jeff Miller <hello@jamiller.me>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "dev.server": "npm run --prefix server dev",
+    "dev.app": "npm run --prefix app dev",
+    "postinstall": "cd server && npm i && cd ../app && npm i && cd ../"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "prettier": "^1.18.2"
+  }
 }

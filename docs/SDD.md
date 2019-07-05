@@ -88,14 +88,14 @@ database down to a single table:
 
 #### Factory Table
 
-| Field          | Type        | Options       |
-| -------------- | ----------- | ------------- |
-| Id             | SMALLSERIAL | PK            |
-| Name           | text        |               |
-| UpperBound     | SMALLINT    |               |
-| LowerBound     | SMALLINT    |               |
-| ChildNodeCount | SMALLINT    | MIN 1, MAX 15 |
-| GeneratedCount | SMALLINT    |               |
+| Field           | Type        | Constraints        |
+| --------------- | ----------- | ------------------ |
+| id              | SERIAL      | PRIMARY KEY        |
+| name            | VARCHAR(55) |                    |
+| upper_bound     | SMALLINT    | NOT NULL           |
+| lower_bound     | SMALLINT    | NOT NULL           |
+| children_length | SMALLINT    | CHECK > 0 AND < 16 |
+| times_generated | SERIAL      |                    |
 
 The "Root Node" won't be stored in the database at all,
 since there can only be one, and it cannot be changed.
