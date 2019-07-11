@@ -12,7 +12,7 @@
   },
   "scripts": {
     "dev": "nodemon --ignore 'public/*' --exec \"heroku local\" --signal SIGTERM",
-    "prepare": "scripts/create.sh && yarn --cwd public install && yarn --cwd public build",
+    "devinstall": "scripts/create.sh && yarn --cwd public install && yarn --cwd public build",
     "recreate": "scripts/drop.sh && scripts/create.sh"
   },
   "dependencies": {
