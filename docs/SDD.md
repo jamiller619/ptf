@@ -1,4 +1,4 @@
-<img src="../app/src/assets/logo.svg" width="16%" style="background-color:transparent" />
+<img src="../public/assets/logo.svg" width="10%" style="background-color:transparent" />
 
 # Software Design Document
 
@@ -23,14 +23,15 @@ along with my submitted [Statement of Work.](SOW.pdf)
 ### Database: [**Heroku Postgres**](https://www.heroku.com/postgres)
 
 - Persistance
-- Notifications for setting up Web Socket real-time services
-- Great setup/tooling with Heroku
+- Triggers
 
 ### API: **Node.js / Express**
 
 - 🤘 [Because Metal](https://twitter.com/shit_hn_says/status/234856345579446272)
 
-### DevOps: Docker
+### Live Updates
+
+- EventSource
 
 ### UI: [**Superfine**](https://github.com/jorgebucaran/superfine)
 
@@ -40,8 +41,6 @@ A React-like UI micro framework (~1 Kb) featuring:
 - JSX
 - Options for SSR
 - 100% Functional
-
-Testing: **Jest**
 
 Bundler: [**Parcel**](https://parceljs.org/)
 
@@ -67,15 +66,15 @@ that, when given the same series of five parameters, will
 always produce the same set of numbers. Those five
 parameters are:
 
-- `UpperBound`
-- `LowerBound`
-- `ChildNodeCount`
-- `FactoryId`
-- `GeneratedCounter`
+- `upperBound`
+- `lowerBound`
+- `childrenLength`
+- `id`
+- `timesGenerated`
 
-The `GeneratedCounter` parameter will remove the possibility
+The `timesGenerated` parameter will remove the possibility
 of generating duplicates with each re-generation of
-children. `FactoryParentId` will reinforce this constraint,
+children. `id` will reinforce this constraint,
 preventing different factories from producing the same, or
 similar, children.
 
@@ -95,7 +94,7 @@ database down to a single table:
 | upper_bound     | SMALLINT    | NOT NULL           |
 | lower_bound     | SMALLINT    | NOT NULL           |
 | children_length | SMALLINT    | CHECK > 0 AND < 16 |
-| times_generated | SERIAL      |                    |
+| times_generated | SMALLINT    |                    |
 
 The "Root Node" won't be stored in the database at all,
 since there can only be one, and it cannot be changed.
@@ -193,25 +192,26 @@ _Only `id` is REQUIRED, all other fields are OPTIONAL._
 
 ```json
 {
-  "id": "uid",
-  "name": "string",
-  "upperBound": 0,
-  "lowerBound": 0,
-  "childNodeCount": 0,
-  "generatedCount": 0
+  "id": id,
+  "name": "name",
+  "upper_bound": 0,
+  "lower_bound": 0,
+  "children_length": 0
 }
 ```
-
-> **NOTE:** If a `POST` request is made to `/factoryNode` with
-> an object that does _NOT contain an optional property_,
-> the API will _NOT update that field._
 
 ---
 
 ### DELETE a Factory Node
 
 ```http
-DELETE /factoryNode/nodeId
+DELETE /factoryNode
+```
+
+```json
+{
+  "id": id
+}
 ```
 
 ---
@@ -236,24 +236,9 @@ DELETE /factoryNode/nodeId
 - The current UI might need to be scaled back somewhat,
   referring to the way nodes are displayed on the screen and
   their ability to be moved around.
-  - Almost the entire UI will needs to built with SVG
 - The possibility of making this a PWA is pretty high
   considering the only thing we'll need to add is the
   manifest.json file.
-
-### UI Components
-
-- FactoryNode
-- FactoryNodeEditor
-- FactoryNodeCreator
-- FactoryNodeChild or FactoryNodeChildren
-- RootNode
-- Animate (via anime.js)
-- Confirm or Confirmation
-- Loader ?
-- Form
-- Input
-- Button
 
 #### Inspiration:
 
@@ -262,4 +247,4 @@ DELETE /factoryNode/nodeId
 
 <br>
 <br>
-<img src="../app/src/assets/vs.svg" width="22%" style="background-color:transparent" />
+<img src="../public/assets/vs.svg" width="22%" style="background-color:transparent" />

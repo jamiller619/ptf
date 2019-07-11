@@ -1,28 +1,48 @@
-<img src="app/src/assets/logo.svg" width="16%" style="background-color:transparent" />
+<img src="public/assets/logo.svg" width="10%" style="background-color:transparent" />
 
 # Passport Tree Factory
 
 ## Install
 
-> Note:
->
-> You don't have to use `yarn` in the following examples.
-> NPM will work too with `npm i` for "Install" and `npm start`
-> for "Run".
-
 ```bash
 git clone https://github.com/jamiller619/ptf.git
 cd ptf
-yarn
+yarn install
 ```
 
 ## Run
 
-This will spin-up a development server on your local machine
-@ http://localhost:1234/
+You will need a local install of PostgreSQL to run this
+site.
+
+First, create an .env file and add in your PostgreSQL info:
+
+```
+NODE_ENV=development
+PORT=3000
+DATABASE_URL=?
+```
+
+`PORT` can be anything you want.
+
+`DATABASE_URL` should include your username and password
+
+---
+
+To run both the server and the web app in development mode, we need two shells
+open.
+
+### Back end server:
 
 ```bash
-yarn start
+yarn dev
+```
+
+### Front end server:
+
+```bash
+cd public
+yarn dev
 ```
 
 ## Docs
@@ -36,4 +56,4 @@ yarn start
 
 <br>
 <br>
-<img src="app/src/assets/vs.svg" width="22%" style="background-color:transparent" />
+<img src="public/assets/vs.svg" width="22%" style="background-color:transparent" />

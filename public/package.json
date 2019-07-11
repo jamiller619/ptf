@@ -1,25 +1,24 @@
 {
-  "name": "ptf.app",
+  "name": "ptf.public",
   "version": "0.0.1",
-  "main": "src/index.js",
+  "main": "index.js",
   "author": "Jeff Miller <hello@jamiller.me>",
   "license": "MIT",
   "scripts": {
-    "dev": "parcel src/index.html -d dist/dev --no-cache"
+    "dev": "node_modules/.bin/parcel watch index.html --no-cache --public-url ./",
+    "build": "node_modules/.bin/parcel build index.html --public-url ./"
+  },
+  "dependencies": {
+    "animejs": "^3.0.1",
+    "superfine": "6.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.0",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/preset-env": "^7.5.0",
-    "babel-eslint": "^10.0.2",
-    "eslint": "^6.0.1",
-    "eslint-plugin-babel": "^5.3.0",
-    "eslint-plugin-jsx": "^0.0.2",
-    "eslint-plugin-react": "^7.14.2",
     "parcel-bundler": "^1.12.3",
     "postcss-modules": "^1.4.1",
     "postcss-nesting": "^7.0.0",
-    "prettier": "^1.18.2",
-    "superfine": "^7.0.0"
+    "sass": "^1.22.3"
   }
 }

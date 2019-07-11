@@ -1,3 +1,7 @@
+CREATE DATABASE ptf;
+
+\c ptf
+
 CREATE TABLE nodes (
   id SERIAL PRIMARY KEY,
   name VARCHAR (55),
@@ -7,5 +11,5 @@ CREATE TABLE nodes (
     children_length > 0
     AND children_length < 16
   ),
-  times_generated SERIAL
-)
+  times_generated SMALLINT
+);

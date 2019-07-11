@@ -1,5 +1,5 @@
 *.code-workspace
-*docker-compose**
+public/dist
 
 # Logs
 logs

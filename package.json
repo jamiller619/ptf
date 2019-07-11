@@ -7,13 +7,24 @@
   "author": "Jeff Miller <hello@jamiller.me>",
   "license": "MIT",
   "scripts": {
-    "dev.server": "npm run --prefix server dev",
-    "dev.app": "npm run --prefix app dev",
-    "postinstall": "cd server && npm i && cd ../app && npm i && cd ../"
+    "dev": "nodemon --ignore 'public/*' --exec \"heroku local\" --signal SIGTERM",
+    "postinstall": "scripts/create.sh && yarn --cwd public install && yarn build",
+    "recreate": "scripts/drop.sh && scripts/create.sh"
   },
-  "dependencies": {},
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "pg": "^7.11.0",
+    "random-js": "^2.1.0"
+  },
   "devDependencies": {
+    "babel-eslint": "^10.0.2",
     "eslint": "^6.0.1",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-jsx": "^0.0.2",
+    "eslint-plugin-react": "^7.14.2",
+    "nodemon": "^1.19.1",
     "prettier": "^1.18.2"
   }
 }

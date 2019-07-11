@@ -1,5 +1,6 @@
 {
   "env": {
+    "node": true,
     "browser": true,
     "es6": true
   },
@@ -36,7 +37,7 @@
     "block-spacing": "error",
     "brace-style": ["error", "1tbs"],
     "callback-return": "error",
-    "camelcase": "error",
+    "camelcase": "off",
     "capitalized-comments": ["error", "never"],
     "class-methods-use-this": "error",
     "comma-dangle": "error",
