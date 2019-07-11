@@ -6,6 +6,10 @@
   "repository": "https://github.com/jamiller619/ptf.git",
   "author": "Jeff Miller <hello@jamiller.me>",
   "license": "MIT",
+  "engines": {
+    "node": "8.11.1",
+    "yarn": "1.16.0"
+  },
   "scripts": {
     "dev": "nodemon --ignore 'public/*' --exec \"heroku local\" --signal SIGTERM",
     "prepare": "scripts/create.sh && yarn --cwd public install && yarn --cwd public build",
