@@ -23,7 +23,9 @@ const NodesContainer = (props, children) => animate(
 )
 
 const handleNodeAdd = state => () => {
-  const nextNodeId = Math.max(...state.nodes.map(n => n.id)) + 1
+  const nextNodeId = state.nodes.length > 0
+    ? Math.max(...state.nodes.map(n => n.id)) + 1
+    : 1
 
   setState({
     ...appState,
