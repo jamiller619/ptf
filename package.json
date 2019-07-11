@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon --ignore 'public/*' --exec \"heroku local\" --signal SIGTERM",
-    "postinstall": "scripts/create.sh && yarn --cwd public install && yarn build",
+    "postinstall": "scripts/create.sh && yarn --cwd public install && yarn --cwd public build",
     "recreate": "scripts/drop.sh && scripts/create.sh"
   },
   "dependencies": {

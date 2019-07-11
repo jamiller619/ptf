@@ -4,18 +4,19 @@
 
 ## Install
 
+Installing is a two-step process. You WILL need a local copy
+of PostgreSQL installed to complete.
+
+### Step 1
+
 ```bash
 git clone https://github.com/jamiller619/ptf.git
 cd ptf
-yarn install
 ```
 
-## Run
+### Step 2
 
-You will need a local install of PostgreSQL to run this
-site.
-
-First, create an .env file and add in your PostgreSQL info:
+Create an .env file and add in your PostgreSQL info:
 
 ```
 NODE_ENV=development
@@ -25,12 +26,17 @@ DATABASE_URL=?
 
 `PORT` can be anything you want.
 
-`DATABASE_URL` should include your username and password
+`DATABASE_URL` should include your username and password.
 
----
+```bash
+yarn install
+```
 
-To run both the server and the web app in development mode, we need two shells
-open.
+## Run
+
+To run both the server and the web app in development mode,
+we need two shells, one for the backend server (located at
+the root) and one for the web server (/public):
 
 ### Back end server:
 
@@ -38,7 +44,7 @@ open.
 yarn dev
 ```
 
-### Front end server:
+### Front end server (with HMR):
 
 ```bash
 cd public
