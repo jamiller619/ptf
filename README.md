@@ -29,7 +29,7 @@ DATABASE_URL=?
 `DATABASE_URL` should include your username and password.
 
 ```bash
-yarn install
+yarn install && yarn devinstall
 ```
 
 ## Run

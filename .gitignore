@@ -1,5 +1,4 @@
 *.code-workspace
-public/dist
 
 # Logs
 logs
